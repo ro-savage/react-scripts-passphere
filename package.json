@@ -1,14 +1,14 @@
 {
-  "name": "react-scripts",
-  "version": "1.0.0",
-  "description": "Configuration and scripts for Create React App.",
-  "repository": "facebookincubator/create-react-app",
+  "name": "react-scripts-passphere",
+  "version": "1.0.01",
+  "description": "Configuration and scripts for Create React App by Passphere",
+  "repository": "ro-savage/react-scripts-passphere",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"
   },
   "bugs": {
-    "url": "https://github.com/facebookincubator/create-react-app/issues"
+    "url": "https://github.com/ro-savage/react-scripts-passphere/issues"
   },
   "files": [
     "bin",
