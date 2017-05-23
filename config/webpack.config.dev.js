@@ -205,7 +205,7 @@ module.exports = {
       // In production, we use a plugin to extract that CSS to a file, but
       // in development "style" loader enables hot editing of CSS.
       {
-        test: /\.modules.css$/,
+        test: /\.modules\.css$/,
         use: [
           require.resolve('style-loader'),
           {
@@ -224,10 +224,10 @@ module.exports = {
                 require('postcss-flexbugs-fixes'),
                 autoprefixer({
                   browsers: [
-                    '>2%',
-                    'last 2 versions',
+                    '>1%',
+                    'last 4 versions',
                     'Firefox ESR',
-                    'not ie < 11',
+                    'not ie < 9', // React doesn't support IE8 anyway
                   ],
                   flexbox: 'no-2009',
                 }),
@@ -237,7 +237,8 @@ module.exports = {
         ],
       },
             {
-        test: /[^\.modules]\.css$/,
+        test: /\.css$/,
+        exclude: /\.modules\.css$/,
         use: [
           require.resolve('style-loader'),
           {
@@ -254,10 +255,10 @@ module.exports = {
                 require('postcss-flexbugs-fixes'),
                 autoprefixer({
                   browsers: [
-                    '>2%',
-                    'last 2 versions',
+                    '>1%',
+                    'last 4 versions',
                     'Firefox ESR',
-                    'not ie < 11',
+                    'not ie < 9', // React doesn't support IE8 anyway
                   ],
                   flexbox: 'no-2009',
                 }),
