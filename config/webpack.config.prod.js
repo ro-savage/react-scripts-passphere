@@ -206,7 +206,7 @@ module.exports = {
       // use the "style" loader inside the async code so CSS from them won't be
       // in the main CSS file.
       {
-        test: /\.modules.css$/,
+        test: /\.module.css$/,
         loader: ExtractTextPlugin.extract(
           Object.assign(
             {
@@ -219,7 +219,7 @@ module.exports = {
                     minimize: true,
                     sourceMap: true,
                     modules: true,
-                    localIdentName: '[name]__[local]___[hash:base64:5]',
+                    localIdentName: '[path][name]__[local]',
                   },
                 },
                 {
@@ -249,7 +249,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: /\.modules\.css$/,
+        exclude: /\.module\.css$/,
         loader: ExtractTextPlugin.extract(
           Object.assign(
             {
@@ -325,10 +325,11 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
-        // This feature has been reported as buggy a few times, such as:
-        // https://github.com/mishoo/UglifyJS2/issues/1964
-        // We'll wait with enabling it by default until it is more solid.
-        reduce_vars: false,
+        // Disabled because of an issue with Uglify breaking seemingly valid code:
+        // https://github.com/facebookincubator/create-react-app/issues/2376
+        // Pending further investigation:
+        // https://github.com/mishoo/UglifyJS2/issues/2011
+        comparisons: false,
       },
       output: {
         comments: false,
@@ -362,7 +363,12 @@ module.exports = {
         console.log(message);
       },
       minify: true,
+      // For unknown URLs, fallback to the index page
       navigateFallback: publicUrl + '/index.html',
+      // Ignores URLs starting from /__ (useful for Firebase):
+      // https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
+      navigateFallbackWhitelist: [/^(?!\/__).*/],
+      // Don't precache sourcemaps (they're large) and build asset manifest:
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
       // Work around Windows path issue in SWPrecacheWebpackPlugin:
       // https://github.com/facebookincubator/create-react-app/issues/2235

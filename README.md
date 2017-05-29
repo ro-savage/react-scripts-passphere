@@ -13,5 +13,4 @@ Any additional numbers are fixes for this app only. E.g. v0.9.21 is v0.9.2 of Re
 See this [CRA Issue](https://github.com/facebookincubator/create-react-app/issues/682) for more details, or for a more indepth guide check out [this article](https://medium.com/@shubheksha/tweaking-configuration-for-react-scripts-in-create-react-app-d91e9d03a42f).
 
 ## Additional featues
-	- CSS Modules and regualr CSS imports. Name any css modules <name>.modules.css
-	- Only supports last 2 browsers + IE11.
+	- CSS Modules and regualr CSS imports. Name any css modules <name>.module.css
